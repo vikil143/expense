@@ -60,8 +60,8 @@ const SIZE = 60;
 const styles = StyleSheet.create({
   fabContainer: {
     position: 'absolute',
-    right: 16,
-    bottom: 16,
+    right: 30,
+    bottom: 30,
   },
   fab: {
     backgroundColor: '#6200ee',
