@@ -10,7 +10,11 @@ const paymentApps = {
   PhonePay: 'com.phonepe.app',
 }
 
-export default function FABPayInit() {
+interface FABPayInitProps {
+  onPress?: () => void;
+}
+
+export default function FABPayInit({ onPress }:FABPayInitProps) {
   const [visible, setVisible] = React.useState(false);
   const [avaliableApps, setAvaliableApps] = React.useState({});
   const openMenu = () => setVisible(true);
@@ -26,6 +30,16 @@ export default function FABPayInit() {
     })
   }
   , []);
+
+  return (    
+    <View style={styles.fabContainer}>
+      <TouchableWithoutFeedback onPress={onPress}>
+        <View style={[styles.fab]}>
+          <Icon source="plus" color='white' size={30} />
+        </View>
+      </TouchableWithoutFeedback>
+    </View>
+  )
 
 
   return (
