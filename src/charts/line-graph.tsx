@@ -132,7 +132,7 @@ export default function LineGraph() {
   return (
     <>
         <G transform={`translate(${padding.left}, ${padding.top})`}>
-            <StandardAxis yTick={7} xScale={xScaleGpay} yScale={yScaleGpay} width={lineGraphDimension.width} height={lineGraphDimension.height}>
+            <StandardAxis xScale={xScaleGpay} yScale={yScaleGpay} width={lineGraphDimension.width} height={lineGraphDimension.height}>
                 <>
                     <G>
                     <AnimatedLine

@@ -2,6 +2,8 @@ import { SCREEN_WIDTH } from "@myapp/utilities/common-data";
 
 export const COLORS = ['#ff6b6b', '#4ecdc4', '#ffe66d', '#5e60ce', '#48bfe3'];
 
+export const padding = { top: 40, right: 20, bottom: 40, left: 50 };
+
 export type PieData = {
   category: string;
   amount: number;
@@ -52,12 +54,28 @@ export const lineDataOfPytm: LineData[] = [
     { date: new Date('2025-04-20'), amount: 120, category: 'Bills' },
 ];
 
-
-
-
-export const padding = { top: 40, right: 20, bottom: 40, left: 50 };
-
 export const lineGraphDimension = {
     width: SCREEN_WIDTH - padding.left - padding.right,
     height: SCREEN_WIDTH - padding.top - padding.bottom,
 }
+
+
+export type BarData = {
+  category: string;
+  amount: number;
+};
+
+export const barData: BarData[] = [
+    { category: 'Food', amount: 320 },
+    { category: 'Travel', amount: 190 },
+    { category: 'Rent', amount: 500 },
+    { category: 'Groceries', amount: 250 },
+    { category: 'Entertainment', amount: 150 },
+];  
+
+export const barGraphDimension = {
+    width: SCREEN_WIDTH - padding.left - padding.right,
+    height: SCREEN_WIDTH - padding.top - padding.bottom,
+}
+
+

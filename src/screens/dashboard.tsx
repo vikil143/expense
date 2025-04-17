@@ -10,6 +10,7 @@ import { lineDataOfGPay, padding, LineData, lineDataOfPhonePay, lineGraphDimensi
 import StandardAxis from '@myapp/charts/standard-axis'
 import { SCREEN_WIDTH } from '@myapp/utilities/common-data'
 import AnimatedLine from '@myapp/charts/components/animated-line';
+import BarGraph from '@myapp/charts/bar-graph';
 import LineGraph from '@myapp/charts/line-graph';
 
 interface DashboardScreenProps extends RootStackScreenProps<"Dashboard"> {}
@@ -31,7 +32,7 @@ export default function DashboardScreen({ navigation } : DashboardScreenProps) {
       <View style={[commonStyles.container]}>
       <View style={{ padding: 10 }} />
       <Svg width={SCREEN_WIDTH} height={SCREEN_WIDTH}>
-        {/* <LineGraph /> */}
+        <BarGraph />
       </Svg>
       </View>
       <FABPayInit onPress={handlePress} />
