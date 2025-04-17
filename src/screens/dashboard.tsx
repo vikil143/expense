@@ -26,7 +26,7 @@ export default function DashboardScreen({ navigation } : DashboardScreenProps) {
     timer.current = setTimeout(() => {
       setTypeOfChart(type);
       timer.current = null
-    }, 2000)
+    }, 1000)
   }
 
   const handlePress = () => {
