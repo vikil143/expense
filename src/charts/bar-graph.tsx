@@ -1,19 +1,23 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { useMemo, useState } from 'react'
-import moment from 'moment'
+import Animated, { useSharedValue } from 'react-native-reanimated'
 import { G, Rect } from 'react-native-svg'
 import * as d3Scale from 'd3-scale'
 import * as d3Array from 'd3-array'
-import { barData, barGraphDimension, lineGraphDimension, padding } from './dummy-data'
+import { barData, barGraphDimension, padding } from './dummy-data'
 import StandardAxisBar from './standard-axis-bar'
 
-export default function BarGraph() {
-    const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+const AnimatedRect = Animated.createAnimatedComponent(Rect);
 
+
+interface BarGraphProps {
+    colorScale?: d3Scale.ScaleOrdinal<string, string, never>;
+}
+
+export default function BarGraph({ colorScale }: BarGraphProps) {
+    const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
     const parsedDataGpay = useMemo(() => {
         const parsed = barData.map((item) => {
-
-        
             return {
                 x: item.category,
                 y: item.amount,
@@ -36,7 +40,6 @@ const yScale = d3Scale.scaleLinear()
 
   return (
     <>
-    
         <Rect
             x={padding.left}
             y={padding.top}
@@ -49,19 +52,35 @@ const yScale = d3Scale.scaleLinear()
             strokeOpacity={0.5}
         />
         <G transform={`translate(${padding.left}, ${padding.top})`}>
-            <StandardAxisBar data={barData} yTick={7} xScale={xScale} yScale={yScale} width={lineGraphDimension.width} height={lineGraphDimension.height}>
+            <StandardAxisBar data={barData} yTick={7} xScale={xScale} yScale={yScale} width={barGraphDimension.width} height={barGraphDimension.height}>
                 <>
-                {barData.map((d, i) => (
-                    <Rect
-                        key={i}
-                        x={xScale(d.category)}
-                        y={yScale(d.amount)}
-                        width={xScale.bandwidth()}
-                        height={barGraphDimension.height - yScale(d.amount)}
-                        fill={selectedIndex === i ? 'orange' : '#6a1b9a'}
-                        onPress={() => selectedIndex === i ? setSelectedIndex(null) : setSelectedIndex(i)}
-                    />
-                    ))}
+                {barData.map((d, i) => {
+                    
+        // const x = xScale(d.label)!;
+        // const finalHeight = lin - yScale(d.value);
+        // const animatedHeight = useSharedValue(0);
+        // const animatedY = useSharedValue(CHART_HEIGHT);
+
+        // const animatedProps = useAnimatedProps(() => ({
+        //   height: animatedHeight.value,
+        //   y: animatedY.value,
+        // }));
+
+        // useEffect(() => {
+        //   animatedHeight.value = withTiming(finalHeight, { duration: 600 });
+        //   animatedY.value = withTiming(yScale(d.value), { duration: 600 });
+        // }, []);
+                    return (
+                        <AnimatedRect
+                            key={i}
+                            x={xScale(d.category)}
+                            y={yScale(d.amount)}
+                            width={xScale.bandwidth()}
+                            height={barGraphDimension.height - yScale(d.amount)}
+                            fill={selectedIndex === i ? '#000' : colorScale(d.category)}
+                            onPress={() => selectedIndex === i ? setSelectedIndex(null) : setSelectedIndex(i)}
+                        />
+                    )})}
                 </>
             </StandardAxisBar>
         </G>

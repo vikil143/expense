@@ -2,7 +2,7 @@ import { SCREEN_WIDTH } from "@myapp/utilities/common-data";
 
 export const COLORS = ['#ff6b6b', '#4ecdc4', '#ffe66d', '#5e60ce', '#48bfe3'];
 
-export const padding = { top: 40, right: 20, bottom: 40, left: 50 };
+export const padding = { top: 40, right: 20, bottom: 40, left: 30 };
 
 export type PieData = {
   category: string;
@@ -21,37 +21,49 @@ export type LineData = {
   date: Date;
   amount: number;
   category: string;
+  color?: string;
 };
 
+export type TypeOfPay = {
+    name: string;
+    color: string;
+}
+
+export const typeOfPay: TypeOfPay[] = [
+    { name: "GPay", color: "blue" }, 
+    { name: "PhonePay", color: "red" }, 
+    { name: "Paytm", color: "orange" }
+]
+
 export const lineDataOfGPay: LineData[] = [
-    { date: new Date('2025-04-14'), amount: 120, category: 'Food' },
-    { date: new Date('2025-04-15'), amount: 90, category: 'Travel' },
-    { date: new Date('2025-04-16'), amount: 150, category: 'Groceries' },
-    { date: new Date('2025-04-17'), amount: 200, category: 'Rent' },
-    { date: new Date('2025-04-18'), amount: 180, category: 'Food' },
-    { date: new Date('2025-04-19'), amount: 70, category: 'Entertainment' },
-    { date: new Date('2025-04-20'), amount: 100, category: 'Bills' },
+    { date: new Date('2025-04-14'), amount: 120, category: 'Food', color: 'blue' },
+    { date: new Date('2025-04-15'), amount: 90, category: 'Travel', color: 'blue' },
+    { date: new Date('2025-04-16'), amount: 150, category: 'Groceries', color: 'blue' },
+    { date: new Date('2025-04-17'), amount: 200, category: 'Rent', color: 'blue' },
+    { date: new Date('2025-04-18'), amount: 180, category: 'Food', color: 'blue' },
+    { date: new Date('2025-04-19'), amount: 70, category: 'Entertainment', color: 'blue' },
+    { date: new Date('2025-04-20'), amount: 100, category: 'Bills', color: 'blue' },
 ];
 
 
 export const lineDataOfPhonePay: LineData[] = [
-    { date: new Date('2025-04-14'), amount: 100, category: 'Food' },
-    { date: new Date('2025-04-15'), amount: 90, category: 'Travel' },
-    { date: new Date('2025-04-16'), amount: 200, category: 'Groceries' },
-    { date: new Date('2025-04-17'), amount: 150, category: 'Rent' },
-    { date: new Date('2025-04-18'), amount: 120, category: 'Food' },
-    { date: new Date('2025-04-19'), amount: 150, category: 'Entertainment' },
-    { date: new Date('2025-04-20'), amount: 180, category: 'Bills' },
+    { date: new Date('2025-04-14'), amount: 100, category: 'Food', color: 'red' },
+    { date: new Date('2025-04-15'), amount: 90, category: 'Travel', color: 'red' },
+    { date: new Date('2025-04-16'), amount: 200, category: 'Groceries', color: 'red' },
+    { date: new Date('2025-04-17'), amount: 150, category: 'Rent', color: 'red' },
+    { date: new Date('2025-04-18'), amount: 120, category: 'Food', color: 'red' },
+    { date: new Date('2025-04-19'), amount: 150, category: 'Entertainment', color: 'red' },
+    { date: new Date('2025-04-20'), amount: 180, category: 'Bills', color: 'red' },
 ];
 
 export const lineDataOfPytm: LineData[] = [
-    { date: new Date('2025-04-14'), amount: 50, category: 'Food' },
-    { date: new Date('2025-04-15'), amount: 20, category: 'Travel' },
-    { date: new Date('2025-04-16'), amount: 100, category: 'Groceries' },
-    { date: new Date('2025-04-17'), amount: 60, category: 'Rent' },
-    { date: new Date('2025-04-18'), amount: 120, category: 'Food' },
-    { date: new Date('2025-04-19'), amount: 160, category: 'Entertainment' },
-    { date: new Date('2025-04-20'), amount: 120, category: 'Bills' },
+    { date: new Date('2025-04-14'), amount: 50, category: 'Food', color: 'orange' },
+    { date: new Date('2025-04-15'), amount: 20, category: 'Travel', color: 'orange' },
+    { date: new Date('2025-04-16'), amount: 100, category: 'Groceries', color: 'orange' },
+    { date: new Date('2025-04-17'), amount: 60, category: 'Rent', color: 'orange' },
+    { date: new Date('2025-04-18'), amount: 120, category: 'Food', color: 'orange' },
+    { date: new Date('2025-04-19'), amount: 160, category: 'Entertainment', color: 'orange' },
+    { date: new Date('2025-04-20'), amount: 120, category: 'Bills', color: 'orange' },
 ];
 
 export const lineGraphDimension = {
