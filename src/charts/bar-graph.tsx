@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React, { useMemo, useState } from 'react'
-import Animated, { useSharedValue } from 'react-native-reanimated'
+import React, { useEffect, useMemo, useState } from 'react'
+import Animated, { useAnimatedProps, useSharedValue, withTiming } from 'react-native-reanimated'
 import { G, Rect } from 'react-native-svg'
 import * as d3Scale from 'd3-scale'
 import * as d3Array from 'd3-array'
@@ -56,29 +56,30 @@ const yScale = d3Scale.scaleLinear()
                 <>
                 {barData.map((d, i) => {
                     
-        // const x = xScale(d.label)!;
-        // const finalHeight = lin - yScale(d.value);
-        // const animatedHeight = useSharedValue(0);
-        // const animatedY = useSharedValue(CHART_HEIGHT);
+                    const x = xScale(d.category)!;
+                    const finalHeight = barGraphDimension.height - yScale(d.amount);
+                    const animatedHeight = useSharedValue(0);
+                    const animatedY = useSharedValue(barGraphDimension.height);
 
-        // const animatedProps = useAnimatedProps(() => ({
-        //   height: animatedHeight.value,
-        //   y: animatedY.value,
-        // }));
+                    const animatedProps = useAnimatedProps(() => ({
+                        height: animatedHeight.value,
+                        y: animatedY.value,
+                    }));
 
-        // useEffect(() => {
-        //   animatedHeight.value = withTiming(finalHeight, { duration: 600 });
-        //   animatedY.value = withTiming(yScale(d.value), { duration: 600 });
-        // }, []);
+                    useEffect(() => {
+                        animatedHeight.value = withTiming(finalHeight, { duration: 1000 });
+                        animatedY.value = withTiming(yScale(d.amount), { duration: 1000 });
+                    }, []);
                     return (
                         <AnimatedRect
                             key={i}
                             x={xScale(d.category)}
-                            y={yScale(d.amount)}
                             width={xScale.bandwidth()}
-                            height={barGraphDimension.height - yScale(d.amount)}
+                            // y={yScale(d.amount)}
+                            // height={barGraphDimension.height - yScale(d.amount)}
                             fill={selectedIndex === i ? '#000' : colorScale(d.category)}
                             onPress={() => selectedIndex === i ? setSelectedIndex(null) : setSelectedIndex(i)}
+                            animatedProps={animatedProps}
                         />
                     )})}
                 </>
