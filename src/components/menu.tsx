@@ -21,6 +21,7 @@ export default function CustMenu({ onPress }: CustMenuProps) {
         visible={show}
         onDismiss={close}
         anchor={<Button onPress={open}>Type of Bar</Button>}>
+        <Menu.Item onPress={() => handlePress("Table")} title="Table" />
         <Menu.Item onPress={() => handlePress("Line")} title="Line" />
         <Menu.Item onPress={() => handlePress("Bar")} title="Bar" />
         <Menu.Item onPress={() => handlePress("Pie")} title="Pie" />

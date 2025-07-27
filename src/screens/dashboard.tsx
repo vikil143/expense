@@ -9,13 +9,14 @@ import BarGroup from '@myapp/charts-group/bar-group';
 import LineGroup from '@myapp/charts-group/line-group';
 import CustMenu from '@myapp/components/menu'
 import Loader from '@myapp/components/loader'
+import PaymentTable from '@myapp/components/feature/table-payments/payment-table.components'
 
 interface DashboardScreenProps extends RootStackScreenProps<"Dashboard"> {}
 
 
 // Component wise approach
 export default function DashboardScreen({ navigation } : DashboardScreenProps) {
-  const [typeOfChart, setTypeOfChart] = useState("Line");
+  const [typeOfChart, setTypeOfChart] = useState("Table");
   const timer = useRef<NodeJS.Timeout | null>(null);
 
   const toggleGraph = (type: string) => {
@@ -30,7 +31,10 @@ export default function DashboardScreen({ navigation } : DashboardScreenProps) {
   }
 
   const handlePress = () => {
-    navigation.navigate("Scanner")
+    navigation.navigate("Amount", {
+      pa: "harish.lakkavatri52-1@okhdfcbank",
+      pn: "Harish Lakkavatri",
+    })
   }
   return (
     <View style={[commonStyles.container]}>
@@ -42,7 +46,9 @@ export default function DashboardScreen({ navigation } : DashboardScreenProps) {
           <CustMenu onPress={toggleGraph} />
         </View>
         {(() => {
-          if(typeOfChart === "Line") {
+          if(typeOfChart === "Table") {
+            return <PaymentTable />
+          } else if(typeOfChart === "Line") {
             return <LineGroup />
           }else if(typeOfChart === "Bar") {
             return <BarGroup />

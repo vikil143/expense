@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   fabContainer: {
     position: 'absolute',
     right: 30,
-    bottom: 30,
+    bottom: 60,
   },
   fab: {
     backgroundColor: '#6200ee',

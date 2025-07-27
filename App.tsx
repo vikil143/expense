@@ -6,7 +6,7 @@
  */
 
 import { commonStyles } from '@myapp/utilities/common-styles';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   StyleSheet,
   View,
@@ -15,9 +15,18 @@ import { NavigationContainer } from '@react-navigation/native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import RootContext from '@myapp/context/root';
 import RootRoutes from '@myapp/routes/root';
+import { checkAndTriggerNewDay } from '@myapp/utilities/common-helpers';
 
 
 function App(): React.JSX.Element {
+
+  useEffect(() => {
+    checkAndTriggerNewDay(() => {
+      console.log("🌅 New day triggered!");
+    });
+  }, []);
+
+
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <NavigationContainer>
