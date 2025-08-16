@@ -32,12 +32,12 @@ const AmountScreen = ({ navigation, route } : AmountScreenProps) => {
       date: new Date(),
       note: note || "No note",
     });
-    // await openGooglePay({
-    //   pa: pa!, // Payee VPA
-    //   pn: pn!, // Payee Name
-    //   tn: note, // Transaction Note
-    //   am: amount // Amount to pay
-    // });
+    await openGooglePay({
+      pa: pa!, // Payee VPA
+      pn: pn!, // Payee Name
+      tn: note, // Transaction Note
+      am: amount // Amount to pay
+    });
     // You can trigger UPI flow from here
     navigation.popToTop(); // Navigate back to the dashboard after payment
   };

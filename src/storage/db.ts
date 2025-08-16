@@ -1,5 +1,6 @@
 import { getOrCreateEncryptionKey } from '@myapp/utilities/common-helpers';
 import Realm from 'realm';
+import { DashboardSchema } from './models/dashboardSchema';
 
 export interface Transaction {
   id: string;
@@ -9,7 +10,6 @@ export interface Transaction {
   note?: string;
 }
 
-// Define your schema
 export const TransactionSchema = {
   name: 'Transaction',
   properties: {
@@ -21,16 +21,20 @@ export const TransactionSchema = {
   },
   primaryKey: 'id',
 };
-
 // Access encrypted Realm
 export const openEncryptedRealm = async () => {
   const encryptionKey = await getOrCreateEncryptionKey();
 
   const realm = await Realm.open({
     path: 'realm-encrypted',
-    schemaVersion: 1,
-    schema: [TransactionSchema],
+    schemaVersion: 2,
+    schema: [TransactionSchema, DashboardSchema],
     encryptionKey, // This makes your Realm secure
+    migration: (oldRealm, newRealm) => {
+      if (oldRealm.schemaVersion < 2) {
+        // Handle migration logic (if any)
+      }
+    },
   });
 
   return realm;

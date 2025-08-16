@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import DashboardScreen from '@myapp/screens/dashboard';
+import DashboardScreen from '@myapp/screens/dashboard/dashboard';
 import { RootStackParamList } from './types';
 import Scanner from '@myapp/screens/scanner';
 import AmountScreen from '@myapp/screens/amount';
